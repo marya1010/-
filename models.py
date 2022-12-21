@@ -18,7 +18,7 @@ class AuthUser(BaseModel):
         regex = r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
         if re.search(regex, value):
             return value
-        raise ValueError("Некорректный e-mail")
+        raise ValueError("Incorrect e-mail")
 
 
 class User(AuthUser):
@@ -31,5 +31,5 @@ class User(AuthUser):
     def name_validation(cls, value: str) -> str:
         numbers_list = list(map(str, range(10)))
         if any(map(lambda x: x in value, numbers_list)):
-            raise ValueError("ФИО не может содержать цифр")
+            raise ValueError("Cannot contain digits")
         return value
